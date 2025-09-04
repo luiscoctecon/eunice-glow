@@ -24,6 +24,12 @@
         .text-color {
             background-color: #d3c8a9;
         }
+        .texter {
+            color: #b6a27b;
+        }
+        .gradient-weird {
+            background: linear-gradient(135deg, #343434 0%, #343434 100%);
+        }
         .bgrey {
             background-color: #262626;
         }
@@ -40,6 +46,11 @@
             animation: slideUp 0.8s ease-out forwards;
             opacity: 0;
             transform: translateY(30px);
+        }
+
+        /* Mobile Menu Gradient Background */
+        #mobileMenu {
+            background: linear-gradient(135deg, #ffffff, #cebf96) !important;
         }
         
         .animate-fade-in {
