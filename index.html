@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eunice Inside Glow - Empowering Women's Transformation</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Display:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+   <link rel="script" href="script.js">
+
+    
+</head>
+<body class="bg-gray-50">
+    
+    <!-- Navigation -->
+    <nav class="fixed flex top-0 w-full  backdrop-blur-md z-50 shadow-sm animate-fade-in">
+        
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            
+            <div class="text-2xl font-bold text-gradient">Eunice Inside Glow</div>
+            <div class="hidden md:flex space-x-8">
+                <a href="#about" class="text-white hover:text-yellow-600 transition-colors">About</a>
+                <a href="#community" class="text-white hover:text-yellow-600 transition-colors">Community</a>
+                <a href="#products" class="text-white hover:text-yellow-600 transition-colors">Products</a>
+            </div>
+            <button id="mobileMenuBtn" class="md:hidden text-black z-50">
+                <i class="fas fa-bars text-xl text-white"></i>
+            </button>
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="fixed inset-0 bg-white  bg-opacity-95 md:hidden hidden ">
+                <div class="flex flex-col items-center justify-center h-full space-y-8">
+                    <a href="#about" class="text-2xl font-semibold text-black hover:text-yellow-600 transition-colors">About</a>
+                    <a href="#community" class="text-2xl font-semibold text-black hover:text-yellow-600 transition-colors">Community</a>
+                    <a href="#products" class="text-2xl font-semibold text-black hover:text-yellow-600 transition-colors">Products</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="py-0 bg-black min-h-screen relative overflow-hidden">
+        <!-- Background Image with Overlay -->
+        <div class="absolute inset-0 z-0">
+           
+            
+        </div>
+        
+        <!-- Floating Elements -->
+        <div class="absolute top-10 left-10 w-20 h-20 bg-yellow-200/30 rounded-full animate-float "></div>
+        <div class="absolute bottom-40 right-16 w-32 h-32 bg-yellow-200/20 rounded-full animate-float " style="animation-delay: -2s;"></div>
+        <div class="absolute top-1/2 right-1/4 w-16 h-16 bg-yellow-300/25 rounded-full animate-float " style="animation-delay: -4s;"></div>
+        <img src="hero4.jpg" alt="Hero Background" class="py-20 md:py-10 w-full h-full md:h-[700px] object-cover">
+
+            <div class="grid md:grid-cols-2 flex flex-col justify-center items-center justify-center max-w-4xl mx-auto">
+<div class="mt-2 flex flex-col animate-slide-up" style="animation-delay: 0.8s;">
+                <h1 class="text-xl text-white/90 mb-4 max-w-2xl mx-auto text-center animate-slide-up" style="animation-delay: 0.4s;">
+                    Empowering Women  
+                </h1>
+                </div>
+            
+            
+            <div class="flex flex-col gap-6 justify-center items-center animate-slide-up" style="animation-delay: 0.6s; ">
+                <button class="gradient-gold text-black px-10 py-4 rounded-full text-lg font-semibold hover:scale-105 transition-all duration-300 glow-effect btn-pulse">
+                    <i class="fas fa-users mr-2"></i>
+                    Join Our Community
+                </button>
+                <button class="bg-white text-black px-10 py-4 rounded-full text-lg font-semibold border-2 border-yellow-400 hover:bg-yellow-50 hover:scale-105 transition-all duration-300">
+                    <i class="fas fa-shopping-bag mr-2"></i>
+                    Explore HERA Products
+                </button>
+            </div>
+            
+            <div class="mt-8 animate-slide-up" style="animation-delay: 0.8s;">
+                <div class="flex flex-row justify-center items-center space-x-8 text-white/90 leading-relaxed">
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-gradient">10+</div>
+                        <div class="text-sm">Years Experience</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-gradient">1000+</div>
+                        <div class="text-sm">Women Transformed</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-gradient">3</div>
+                        <div class="text-sm text-white">Years HERA Journey</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+   <section id="about" class=" mx-auto py-20 px-10 overflow-auto bg-black">
+      <div class=" grid md:grid-cols-2 gap-10 md:gap-16 items-center">
+
+<div class="animate-slide-up w-full ">
+    <h2 class="text-5xl font-bold text-white">
+          Meet <span class="text-gradient">Eunice</span>
+        </h2>
+        <br>
+    <!-- Swiper -->
+    <div class="swiper aboutSwiper rounded-1xl overflow-auto">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <img src="eunice.jpg" class="w-[400px] h-full md:h-[700px] md:w-full rounded-2xl">
+            </div>
+            <div class="swiper-slide">
+                <img src="heracreation.jpg" class="w-[400px] h-full md:h-[700px] md:w-full rounded-2xl">
+            </div>
+            <div class="swiper-slide">
+                <img src="hero.jpg" class="w-[400px] h-full md:h-[700px] md:w-full rounded-2xl">
+            </div>
+        </div>
+        <!-- Add Pagination -->
+        <div class="swiper-pagination"></div>
+        <!-- Add Navigation -->
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+    </div>
+</div>
+
+    
+    
+   
+
+
+
+      <!-- Text Content -->
+      <div class="space-y-8 animate-slide-up" style="animation-delay: 0.3s;">
+       
+        <div class="space-y-6 text-lg text-white leading-relaxed">
+          <p>
+            <strong>Passionate about women's transformation.</strong> For 10 years I worked as a hairstylist, 
+            believing that if women looked good on the outside, their lives would feel perfect.
+          </p>
+          <p>
+            But through thousands of conversations in the beauty industry, I discovered something deeper: 
+            <span class="font-semibold text-black">true satisfaction doesn't come only from looking good.</span>
+          </p>
+          <p>
+            <span class="text-gradient font-bold">It comes from how we see ourselves.</span>
+          </p>
+        </div>
+        <div class="gradient-gold p-6 rounded-xl">
+          <p class="text-black font-semibold text-lg text-center">
+            "The way you perceive yourself can either open unimaginable doors or limit you completely."
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+    <!-- Self-Image Discovery Section -->
+    <section class="py-20 bg-black">
+        <div class="container mx-auto px-6 text-center">
+            <div class="animate-slide-up">
+                <h2 class="text-5xl font-bold text-white mb-8">
+                    The <span class="text-gradient">Self-Image</span> Discovery
+                </h2>
+
+                <p class="text-2xl text-gray-100 mb-16 max-w-4xl mx-auto leading-relaxed">
+                    I found one of the most powerful tools in this world: Self-Image.
+                    The only way to change your outside world is to reconnect with your inner self 
+                    and build habits that align with your higher version.
+                </p>
+            </div>
+            <div class="relative">
+            <div class="flex overflow-x-auto pb-6 gap-6 snap-x snap-mandatory hide-scrollbar md:grid md:grid-cols-3 gap-8 mt-16">
+
+                <div class="card-hover bg-white p-8 rounded-xl shadow-lg animate-slide-up" style="animation-delay: 0.2s;">
+                    <div class="w-60 h-20 md:w-24 md:h-24 gradient-gold rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-search text-2xl text-black"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-black mb-4">Discover</h3>
+                    <p class="text-gray-700 leading-relaxed">
+                        Reconnect with your inner self and understand your true worth beyond external appearance.
+                    </p>
+                </div>
+                
+                <div class="card-hover bg-white p-8 rounded-xl shadow-lg animate-slide-up" style="animation-delay: 0.4s;">
+                    <div class="w-60 h-20 md:w-24 md:h-24 gradient-gold rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-seedling text-2xl text-black"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-black mb-4">Transform</h3>
+                    <p class="text-gray-700 leading-relaxed">
+                        Build daily habits that align with your higher version and authentic self-image.
+                    </p>
+                </div>
+                
+                <div class="card-hover bg-white p-8 rounded-xl shadow-lg animate-slide-up" style="animation-delay: 0.6s;">
+                    <div class="w-60 h-20 md:w-24 md:h-24 gradient-gold rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-crown text-2xl text-black"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-black mb-4">Shine</h3>
+                    <p class="text-gray-700 leading-relaxed">
+                        Embrace your power to create, shine, and design the life you truly deserve.
+                    </p>
+                    
+                 
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+    
+<!-- HERA Story Section -->
+    <section class="py-20 bg-black">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div class="space-y-8 animate-slide-up">
+                    <h2 class="text-5xl font-bold text-black">
+                        Why I Created <span class="text-white">HERA</span>?
+                    </h2>
+                    
+                    <div class="space-y-6 text-lg text-white leading-relaxed">
+                        <p>
+                            Out of this vision, <strong>HERA Hair Essentials</strong> was born. 
+                            More than products, it's a ritual: talking to yourself while looking in the mirror, 
+                            embracing your worth, and caring for your hair with high-quality natural ingredients.
+                        </p>
+                        
+                        <p>
+                            After 3 years walking this new journey, I feel ready to help women in many ways.
+                        </p>
+                    </div>
+                    
+                    <button class="gradient-gold text-black px-8 py-4 rounded-full text-lg font-semibold hover:scale-105 transition-all duration-300 glow-effect">
+                        <i class="fas fa-external-link-alt mr-2"></i>
+                        Visit heraesntls.com
+                    </button>
+                </div>
+                
+                <div class="animate-slide-up" style="animation-delay: 0.3s;">
+                    <div class="w-80 h-80 mx-auto bg-gradient-to-br from-orange-100 to-yellow-100 rounded-xl flex items-center justify-center">
+                        <i class="fas fa-spa text-8xl text-gradient"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--products-->
+
+    <section id="products" class="py-20 bg-black">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 animate-slide-up">
+                <h2 class="text-5xl font-bold text-white mb-6">Our Products</h2>
+                <p class="text-lg text-gray-100">
+                    Discover the range of products designed to empower your self-image journey.
+                </p>
+            </div>
+            
+            <div class="relative">
+                <!-- Scroll container -->
+                <div class="flex overflow-x-auto pb-6 gap-6 snap-x snap-mandatory hide-scrollbar md:grid md:grid-cols-3 gap-8 mt-1 ">
+                    <div class="animate-slide-up flex-shrink-0 w-[300px] md:w-[400px] snap-center" style="animation-delay: 0.2s;">
+                       <div id='product-component-1756993139235'></div>
+
+
+                    </div>
+                    <div class="animate-slide-up flex-shrink-0 w-[300px] md:w-[400px] snap-center" style="animation-delay: 0.4s;">
+                        <div id='product-component-1756993292886'></div>
+
+
+                    </div>
+                    <div class="animate-slide-up flex-shrink-0 w-[300px] md:w-[400px] snap-center" style="animation-delay: 0.2s;">
+                        <div id='product-component-1756993522203'></div>
+
+
+
+                    </div>
+                </div>
+
+                <!-- Scroll Indicator -->
+                <div class="flex justify-center mt-6 gap-2">
+                    <div class="w-2 h-2 rounded-full bg-yellow-400"></div>
+                    <div class="w-2 h-2 rounded-full bg-yellow-400/50"></div>
+                    <div class="w-2 h-2 rounded-full bg-yellow-400/50"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+
+    <!-- Community Section -->
+    <section id="community" class="py-20 bg-black from-yellow-50 to-orange-50">
+        <div class="container mx-auto px-6 text-center">
+            <div class="animate-slide-up">
+                <h2 class="text-5xl font-bold text-white mb-8">
+                    Join Our <span class="text-gradient">Beautiful Community</span>
+                </h2>
+                
+                <p class="text-2xl text-gray-100 mb-16 max-w-4xl mx-auto leading-relaxed">
+                    If you feel connected to this mission, welcome to this beautiful community where we raise our voices and say:
+                </p>
+            </div>
+            
+            <div class="bg-white p-12 rounded-2xl shadow-xl max-w-4xl mx-auto animate-slide-up glow-effect" style="animation-delay: 0.3s;">
+                <blockquote class="text-1xl md:text-4xl font-bold text-black leading-relaxed mb-8">
+                    "This is me, and I accept myself for the gift that I am — 
+                    the power to create, to shine, and to design the life I deserve."
+                </blockquote>
+                
+                <div class="flex flex-col md:flex-row gap-6 justify-center items-center mt-12">
+                    <button class="gradient-gold text-black px-12 py-5 rounded-full text-xl font-bold hover:scale-105 transition-all duration-300 btn-pulse">
+                        <i class="fas fa-users mr-3"></i>
+                        Join the Community
+                    </button>
+                    <button class="bg-transparent border-2 border-yellow-400 text-black px-12 py-5 rounded-full text-xl font-semibold hover:bg-yellow-50 hover:scale-105 transition-all duration-300">
+                        <i class="fas fa-calendar-alt mr-3"></i>
+                        Book Consultation
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="py-20 bg-black">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-10 animate-slide-up">
+                <h2 class="text-5xl font-bold text-white mb-6">
+                    Transform Your <span class="text-gradient">Inner & Outer Beauty</span>
+                </h2>
+                <p class="text-xl text-gray-100 max-w-3xl mx-auto">
+                    Comprehensive beauty image consulting and premium natural hair care products 
+                    for women ready to embrace their authentic selves.
+                </p>
+            </div>
+            
+            <div class="relative">
+                <!-- Scroll container -->
+                <div class="flex overflow-x-auto pb-4 gap-4 snap-x snap-mandatory hide-scrollbar md:grid md:grid-cols-3  mt-1">
+                    <!-- Product Card 1 -->
+                    <div class="card-hover bg-white p-10 rounded-2xl shadow-lg animate-slide-up flex-shrink-0 w-[300px] md:w-[300px] snap-center" style="animation-delay: 0.2s;">
+                        <div class="w-20 h-10 md:w-10 md:h-10 md:h-16 gradient-gold rounded-full flex items-center justify-center mb-2">
+                            <i class="fas fa-user-check text-2xl text-black"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-black mb-4">Beauty Image 
+                            Consulting</h3>
+                        <p class="text-gray-700 leading-relaxed mb-6">
+                            Personalized consultations to help you discover and embrace your authentic beauty, 
+                            both inside and out. Transform how you see yourself.
+                        </p>
+                        <button class="gradient-gold text-black px-6 py-3 rounded-full font-semibold hover:scale-105 transition-all duration-300">
+                            Learn More
+                        </button>
+                    </div>
+                    
+                    <!-- Product Card 2 -->
+                    <div class="card-hover bg-white p-10 rounded-2xl shadow-lg animate-slide-up flex-shrink-0 w-[300px] md:w-[300px] snap-center" style="animation-delay: 0.4s;">
+                        <div class="w-20 h-10 md:w-10 md:h-10 gradient-gold rounded-full flex items-center justify-center mb-6">
+                            <i class="fas fa-leaf text-2xl text-black"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-black mb-4">HERA Hair Essentials</h3>
+                        <p class="text-gray-700 leading-relaxed mb-6">
+                            Premium natural hair care products designed as daily rituals of self-love. 
+                            High-quality ingredients for healthy, beautiful hair.
+                        </p>
+                        <button class="gradient-gold text-black px-6 py-3 rounded-full font-semibold hover:scale-105 transition-all duration-300">
+                            Shop Now
+                        </button>
+                    </div>
+
+                    <!-- Product Card 3 -->
+                    <div class="card-hover bg-white p-10 rounded-2xl shadow-lg animate-slide-up flex-shrink-0 w-[300px] md:w-[300px] snap-center" style="animation-delay: 0.6s;">
+                        <div class="w-20 h-10 md:w-10 md:h-10 gradient-gold rounded-full flex items-center justify-center mb-6">
+                            <i class="fas fa-spa text-2xl text-black"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-black mb-4">Self-Image Programs</h3>
+                        <p class="text-gray-700 leading-relaxed mb-6">
+                            Transform your self-perception through our specialized programs designed 
+                            to help you discover and embrace your authentic beauty.
+                        </p>
+                        <button class="gradient-gold text-black px-6 py-3 rounded-full font-semibold hover:scale-105 transition-all duration-300">
+                            Explore Programs
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Scroll Indicator -->
+                <div class="flex justify-center mt-6 gap-2">
+                    <div class="w-2 h-2 rounded-full bg-yellow-400"></div>
+                    <div class="w-2 h-2 rounded-full bg-yellow-400/50"></div>
+                    <div class="w-2 h-2 rounded-full bg-yellow-400/50"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-20 bg-black from-yellow-50 to-orange-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 animate-slide-up">
+                <h2 class="text-5xl font-bold text-white mb-6">
+                    Stories of <span class="text-gradient">Transformation</span>
+                </h2>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="testimonial-card p-8 rounded-xl shadow-lg card-hover animate-slide-up" style="animation-delay: 0.2s;">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-full flex items-center justify-center text-white font-bold text-lg mr-4">
+                            S
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-black">Sarah M.</h4>
+                            <div class="text-yellow-500">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 italic">
+                        "Eunice helped me see myself in a completely new light. The transformation wasn't just external - 
+                        I finally learned to love who I am inside."
+                    </p>
+                </div>
+                
+                <div class="testimonial-card p-8 rounded-xl shadow-lg card-hover animate-slide-up" style="animation-delay: 0.4s;">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-full flex items-center justify-center text-white font-bold text-lg mr-4">
+                            M
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-black">Maria L.</h4>
+                            <div class="text-yellow-500">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 italic">
+                        "HERA products are incredible, but the community and mindset shift are what truly changed my life. 
+                        I feel confident and radiant every day."
+                    </p>
+                </div>
+                
+                <div class="testimonial-card p-8 rounded-xl shadow-lg card-hover animate-slide-up" style="animation-delay: 0.6s;">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-full flex items-center justify-center text-white font-bold text-lg mr-4">
+                            A
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-black">Ana R.</h4>
+                            <div class="text-yellow-500">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 italic">
+                        "This community showed me that true beauty comes from within. 
+                        Eunice's approach is life-changing - I'm finally living my best life!"
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="py-20 bg-black text-white relative overflow-hidden">
+        
+        
+        <div class="container mx-auto px-6 text-center relative z-10">
+            <div class="animate-slide-up">
+                <h2 class="text-5xl md:text-6xl font-bold mb-8">
+                    Ready to <span class="text-gradient">Transform</span> Your Life?
+                </h2>
+                
+                <p class="text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed">
+                    Join thousands of women who have discovered their inner glow and transformed their lives from the inside out.
+                </p>
+                
+                <div class="flex flex-col md:flex-row gap-6 justify-center items-center">
+                    <button class="gradient-gold text-black px-12 py-5 rounded-full text-xl font-bold hover:scale-105 transition-all duration-300 glow-effect btn-pulse">
+                        <i class="fas fa-users mr-3"></i>
+                        Join Our Community Now
+                    </button>
+                    <button class="bg-transparent border-2 border-yellow-400 text-yellow-400 px-12 py-5 rounded-full text-xl font-semibold hover:bg-yellow-400 hover:text-black hover:scale-105 transition-all duration-300">
+                        <i class="fas fa-shopping-bag mr-3"></i>
+                        Explore HERA Products
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white-to-black text-white py-16">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="col-span-2">
+                    <h3 class="text-2xl font-bold text-gradient mb-4">Eunice Inside Glow</h3>
+                    <p class="text-gray-100 leading-relaxed mb-6">
+                        Empowering women by connecting their inner-self with their outer-self. 
+                        Building a community of transformation and authentic beauty.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="https://www.instagram.com/eunice_insideglow/" class="w-10 h-10 bg-yellow-600 rounded-full flex items-center justify-center hover:scale-110 transition-all duration-300">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.facebook.com/eunice.hairstyle.7/" class="w-10 h-10 bg-yellow-600 rounded-full flex items-center justify-center hover:scale-110 transition-all duration-300">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="https://www.youtube.com/channel/UCCexm_vPVUW6ScX812j5qGw" class="w-10 h-10 bg-yellow-600 rounded-full flex items-center justify-center hover:scale-110 transition-all duration-300">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Services</h4>
+                    <ul class="space-y-1 text-gray-100">
+                        <li><a href="#" class="hover:text-yellow-400 transition-colors">Beauty Consulting</a></li>
+                        <li><a href="#" class="hover:text-yellow-400 transition-colors">Community Access</a></li>
+                        <li><a href="#" class="hover:text-yellow-400 transition-colors">HERA Products</a></li>
+                        <li><a href="#" class="hover:text-yellow-400 transition-colors">Personal Sessions</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Contact</h4>
+                    <ul class="space-y-2 text-gray-100">
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-2 text-yellow-400"></i>
+                            hello@
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-globe mr-2 text-yellow-400"></i>
+                            <a href="https://heraesntls.com">heraesntls.com</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-12 pt-8 text-center text-gray-100">
+                <p>&copy; 2024 Eunice Inside Glow. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
