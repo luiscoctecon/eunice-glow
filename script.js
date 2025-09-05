@@ -41,7 +41,7 @@
         function toggleMobileMenu() {
             isMenuOpen = !isMenuOpen;
             mobileMenu.classList.toggle('hidden');
-            document.body.classList.toggle('overflow-hidden');
+            document.body.classList.toggle('overflow-auto');
             mobileMenuIcon.classList.toggle('fa-bars');
             mobileMenuIcon.classList.toggle('fa-times');
         }

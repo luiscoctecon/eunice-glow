@@ -51,6 +51,7 @@
         /* Mobile Menu Gradient Background */
         #mobileMenu {
             background: linear-gradient(135deg, #ffffff, #cebf96) !important;
+            height: fit-content;
         }
         
         .animate-fade-in {
