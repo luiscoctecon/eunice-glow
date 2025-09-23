@@ -1,0 +1,38 @@
+/* Quiz Styles */
+.text-gradient {
+    background: linear-gradient(135deg, #9f7aea, #f6ad55);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.question-card {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.5s ease-out;
+}
+
+.option-card {
+    transition: all 0.3s ease;
+}
+
+.option-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.option-card.selected {
+    border-color: #f6ad55;
+    background-color: #fff7ed;
+}
