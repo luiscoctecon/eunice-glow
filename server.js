@@ -3,11 +3,51 @@ const express = require('express');
 const nodemailer = require('nodemailer');
 const cors = require('cors');
 const path = require('path');
+const mongoose = require('mongoose');
+const cron = require('node-cron');
 
 const app = express();
 app.use(express.json());
 app.use(cors());
 app.use(express.static(path.join(__dirname, 'public')));
+
+// MongoDB Schema for scheduled emails
+const scheduledEmailSchema = new mongoose.Schema({
+    email: String,
+    name: String,
+    quizType: String,
+    template: String,
+    scheduledDate: Date,
+    sent: { type: Boolean, default: false }
+});
+
+const ScheduledEmail = mongoose.model('ScheduledEmail', scheduledEmailSchema);
+
+// Connect to MongoDB
+mongoose.connect(process.env.MONGODB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+})
+.then(() => console.log('Connected to MongoDB'))
+.catch(err => console.error('MongoDB connection error:', err));
+
+// Setup email transporter
+const transporter = nodemailer.createTransport({
+    service: process.env.EMAIL_SERVICE || 'gmail',
+    auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASSWORD
+    }
+});
+
+// Verify email configuration
+transporter.verify(function(error, success) {
+    if (error) {
+        console.log('Email server error:', error);
+    } else {
+        console.log('Email server is ready to send messages');
+    }
+});
 
 // Email templates
 const emailTemplates = {
@@ -102,12 +142,34 @@ const emailTemplates = {
     }
 };
 
-// Email transport configuration
-const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASSWORD
+// Schedule email sending (runs every hour)
+cron.schedule('0 * * * *', async () => {
+    try {
+        const now = new Date();
+        const scheduledEmails = await ScheduledEmail.find({
+            scheduledDate: { $lte: now },
+            sent: false
+        });
+
+        for (const email of scheduledEmails) {
+            try {
+                const template = emailTemplates[email.quizType];
+                await transporter.sendMail({
+                    from: `"Eunice Inside Glow" <${process.env.EMAIL_USER}>`,
+                    to: email.email,
+                    subject: template.subject,
+                    html: template.template(email.name)
+                });
+
+                email.sent = true;
+                await email.save();
+                console.log(`Follow-up email sent to ${email.email}`);
+            } catch (err) {
+                console.error(`Failed to send email to ${email.email}:`, err);
+            }
+        }
+    } catch (err) {
+        console.error('Error processing scheduled emails:', err);
     }
 });
 
@@ -122,15 +184,29 @@ app.post('/submit-quiz', async (req, res) => {
         // Get email template
         const emailTemplate = emailTemplates[quizType];
         
-        // Send email
+        // Send immediate email
         await transporter.sendMail({
-            from: process.env.EMAIL_USER,
+            from: `"Eunice Inside Glow" <${process.env.EMAIL_USER}>`,
             to: email,
             subject: emailTemplate.subject,
-            text: emailTemplate.template(fullName)
+            html: emailTemplate.template(fullName)
         });
 
-        // Store results in database (you can add this functionality later)
+        // Schedule follow-up emails
+        const scheduledDates = [
+            new Date(Date.now() + 2 * 24 * 60 * 60 * 1000),  // 2 days later
+            new Date(Date.now() + 5 * 24 * 60 * 60 * 1000),  // 5 days later
+            new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)   // 7 days later
+        ];
+
+        for (const date of scheduledDates) {
+            await ScheduledEmail.create({
+                email,
+                name: fullName,
+                quizType,
+                scheduledDate: date
+            });
+        }
         
         res.json({ 
             success: true, 
@@ -168,3 +244,4 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
+
