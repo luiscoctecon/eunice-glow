@@ -41,12 +41,13 @@ const questions = [
         ]
     },
     {
-        question: "What best describes your income level right now? (Optional)",
+        question: "What best describes your income level right now?",
         options: [
             { text: "Less than $2,000/month", value: "A" },
             { text: "$2,000–$5,000/month", value: "B" },
-            { text: "$5,000+/month", value: "C" }
-            { text: "I Prefer Not To Say", value: "D"}
+            { text: "$5,000+/month", value: "C" },
+            { text: "Prefer Not to Say", value: "D" }
+            
         ]
     },
     {
@@ -208,9 +209,10 @@ function calculateQuizType(answers) {
         A: answers.filter(a => a === 'A').length,
         B: answers.filter(a => a === 'B').length,
         C: answers.filter(a => a === 'C').length
+       
     };
 
-    if (counts.A > counts.B && counts.A > counts.C) {
+    if (counts.A > counts.B && counts.A > counts.C ) {
         return 'style-transformer';
     } else if (counts.B > counts.A && counts.B > counts.C) {
         return 'ambitious-creator';
