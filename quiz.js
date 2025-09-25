@@ -41,11 +41,12 @@ const questions = [
         ]
     },
     {
-        question: "What best describes your income level right now?",
+        question: "What best describes your income level right now? (Optional)",
         options: [
             { text: "Less than $2,000/month", value: "A" },
             { text: "$2,000–$5,000/month", value: "B" },
             { text: "$5,000+/month", value: "C" }
+            { text: "I Prefer Not To Say", value: "D"}
         ]
     },
     {
