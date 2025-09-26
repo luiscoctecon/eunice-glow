@@ -20,12 +20,13 @@
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-   <link rel="script" href="script.js">
-
+   
+   
     
 </head>
 <body class="bg-gray-50">
-
+    <div id="react-root"></div>
+    
     <!-- Navigation -->
     <nav class="fixed flex top-0 w-full  backdrop-blur-md z-50 shadow-sm animate-fade-in">
         
@@ -66,10 +67,10 @@
         <div class="absolute bottom-40 right-16 w-32 h-32 bg-yellow-200/20 rounded-full animate-float z-30 " style="animation-delay: -2s;"></div>
         <div class="absolute top-1/2 right-1/4 w-16 h-16 bg-yellow-300/25 rounded-full animate-float z-30 " style="animation-delay: -4s;"></div>
         <div class="relative w-full h-full">
-            <img src="hero.jpg" alt="Hero Background" class="py-10 md:py-10 w-full h-full md:h-full object-cover">
-            <div class="grid grid-cols-2 absolute justify-center top-0 left-0 w-full h-full flex">
-                <div class=" w-full px-0 md:px-16">
-                    <div class="flex flex-col col-span-2 justify-center h-full py-10 md:py-0">
+            <img src="hero.jpg" alt="Hero Background" class="py-10 md:py-10 w-full h-full md:w-full md:h-[700px] object-cover">
+            <div class="grid grid-cols-2 absolute justify-center items-center top-0 left-0 flex">
+                
+                    <div class="flex flex-col justify-center items-center py-10 md:py-40">
                         <h1 class="text-1xl md:text-5xl leading-relaxed text-white/90 mb-4 animate-slide-up" style="animation-delay: 0.4s;">
                             Do You Dream About Becoming The Best Version Of Yourself
                             <br>
@@ -79,15 +80,17 @@
                     </div>
                     </div>
                     </div>
-               </div>
-               <br>
+               
+               
                 </div>
+                
+                
             </div>
 
           
-            
-            
-            <div class="flex flex-col py-2 md:py-0 gap-6 justify-center  items-center animate-slide-up" style="animation-delay: 0.6s; ">
+
+
+            <div class="flex flex-col md:flex-row py-2 md:py-0 gap-6 justify-center  items-center animate-slide-up" style="animation-delay: 0.6s; ">
                 <button class="gradient-gold text-black px-10 py-0 md:py-4 rounded-full text-lg font-semibold hover:scale-105 transition-all duration-300 glow-effect btn-pulse">
                     <a href="quiz.html" target="_blank">
                     <i class="fas fa-users mr-2"></i>
@@ -120,19 +123,36 @@
     </section>
     
     <!--Workshop-->
-    <section id="Workshop" class="gradient-weird">
-        <div class="mx-auto px-6 py-0 text-center">
-            <h2 class="text-5xl font-bold text-gradient mb-8 animate-slide-up">Free Workshop</h2>
-            <p class="text-2xl text-gray-100 mb-12 max-w-3xl mx-auto leading-relaxed animate-slide-up" style="animation-delay: 0.2s;">
-                I created a special free online workshop, where we’ll dive deep into how to break free from feeling stuck and reconnect with your most powerful self
-                
+    <section id="Workshop" class="gradient-black">
+
+        <div class="mx-auto px-6 py-2 text-center">
+            <h2 class="text-5xl font-bold text-white mb-8 animate-slide-up">Free <span class="text-gradient">Workshop</span></h2>
+            <p class="text-2xl md:text-3xl text-white mb-12 max-w-3xl mx-auto leading-relaxed animate-slide-up" style="animation-delay: 0.2s;">
+                I created a special free online workshop, where we’ll dive deep into how to break free from feeling stuck and reconnect with your most powerful self      
             </p>
-            <button class="gradient-gold text-black px-12 py-4 rounded-full text-lg font-semibold hover:scale-105 transition-all duration-300 glow-effect btn-pulse animate-slide-up" style="animation-delay: 0.4s;">
-                <a href="quiz.html" target="_blank">
-                    <i class="fas fa-users mr-2"></i>
-                    Reserve Your Spot Now
-                </a>
-            </button>
+            </div>
+            <div class="flex mx-auto px-4 text-1xl justify-center md:text-1xl leading-loose text-white">
+                <ul class="list-disc list-inside text-3xl md:text-2xl">
+                    <h3 class="text-3xl">During The Workshop You Will:</h3>
+                    <br>
+                    <li>Discover What's Been Holding You Back</li>
+                    <li>Gain Clarity On Your Next Step Forward</li>
+                    <li>Reconnect With Your Confidence And Energy</li>
+                    <li>Leave With A clear Vision Of The Woman You Want To Become</li>
+                    <br>
+                    <h4 class="text-1xl"> JOIN US ON OCTOBER 26TH 11AM PACIFIC / 2PM EASTERN</h4>
+                </ul>
+              
+            </div>
+            <div class="flex flex-col md:flex-row py-2 md:py-4 gap-6 justify-center  items-center animate-slide-up" style="animation-delay: 0.6s; ">
+                <button class="bg-white text-black px-10 py-4 rounded-full text-lg font-semibold border-2 border-yellow-400 hover:bg-yellow-50 hover:scale-105 transition-all duration-300">
+                    <a href="quiz.html" target="_blank">
+                        <i class="fas fa-users mr-2"></i>
+                        Join Our FREE Workshop
+                    </a>
+                </button>
+            </div>
+        </div>
     </section>
 
     <!-- About Section -->
@@ -600,12 +620,14 @@
                     </ul>
                 </div>
             </div>
+    
             
             <div class="border-t border-gray-700 mt-12 pt-8 text-center text-gray-100">
                 <p>&copy; 2024 Eunice Inside Glow. All rights reserved.</p>
             </div>
         </div>
     </footer>
-
+    </body>
+<script type="module" src="ogl-scene.js"></script>
     <!-- Scripts -->
     <script src="script.js"></script>
