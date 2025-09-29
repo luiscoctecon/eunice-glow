@@ -390,6 +390,6 @@
     animation: blink-caret 0.7s step-end infinite;
 }
 @keyframes blink-caret {
-    0%, 100% { border-color: #fff; }
+    0%, 100% { border-color: transparent; }
     50% { border-color: transparent; }
 }
