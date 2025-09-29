@@ -13,6 +13,40 @@
             });
         }, observerOptions);
 
+        // typewriter effect
+
+        function typewriterEffect(element, text, speed = 30) {
+    let i = 0;
+    function type() {
+        if (i <= text.length) {
+            element.textContent = text.slice(0, i);
+            i++;
+            setTimeout(type, speed);
+        }
+    }
+    type();
+}
+
+function isInViewport(el) {
+    const rect = el.getBoundingClientRect();
+    return (
+        rect.top < window.innerHeight &&
+        rect.bottom > 0
+    );
+}
+
+function handleTypewriterOnScroll() {
+    document.querySelectorAll('.typewriter').forEach(el => {
+        if (!el.dataset.typed && isInViewport(el)) {
+            el.dataset.typed = "true";
+            typewriterEffect(el, el.dataset.text);
+        }
+    });
+}
+
+window.addEventListener('scroll', handleTypewriterOnScroll);
+window.addEventListener('DOMContentLoaded', handleTypewriterOnScroll);
+
         // Observe all animated elements
         document.querySelectorAll('.animate-slide-up, .animate-fade-in').forEach(el => {
             observer.observe(el);
@@ -1105,3 +1139,14 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 })();
 /*]]>*/
+
+//motion js animations 
+ 
+
+scroll(animation)
+
+scroll(callback, { axis: "x" })
+
+scroll(callback, { container: document.getElementById("scroller") })
+
+scroll(animation, { target: document.getElementById("item") })

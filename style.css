@@ -377,3 +377,19 @@
             z-index: -1;
             opacity: 0.5;
         }
+
+
+/* typewriter effect */
+
+.typewriter {
+    display: inline-flex;
+    min-height: 1em;
+    border-right: 2px solid #fff;
+    
+    overflow:auto;
+    animation: blink-caret 0.7s step-end infinite;
+}
+@keyframes blink-caret {
+    0%, 100% { border-color: #fff; }
+    50% { border-color: transparent; }
+}

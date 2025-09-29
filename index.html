@@ -4,28 +4,37 @@
     <link rel="icon" href="favicon.svg" type="image/eunice-icon">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eunice Inside Glow - Empowering Women's Transformation</title>
+    <title>Eunice Inside Glow - Helping and Empowering Women's Transformation</title>
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Display:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+    <!--SEO Meta Tags-->
+    <!-- Add more meta tags for SEO -->
+<meta name="description" content="Eunice Inside Glow - Empowering Women's Transformation">
+<meta name="keywords" content="women empowerment, transformation, personal growth">
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
     <!-- Font Awesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" loading="lazy">
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script type="module">
+  import { animate, scroll } from "https://cdn.jsdelivr.net/npm/motion@latest/+esm"
+</script>
    
-   
+    <!-- Add security headers -->
+
     
 </head>
 <body class="bg-gray-50">
-    <div id="react-root"></div>
+    
     
     <!-- Navigation -->
     <nav class="fixed flex top-0 w-full  backdrop-blur-md z-50 shadow-sm animate-fade-in">
@@ -34,7 +43,7 @@
             
             <div class="text-2xl font-bold text-gradient">EUNICE INSIDE GLOW</div>
             <div class="hidden md:flex space-x-8">
-                <a href="#about" class="text-white hover:text-yellow-600 transition-colors">About</a>
+                <a href="#gallery" class="text-white hover:text-yellow-600 transition-colors">About</a>
                 <a href="#community" class="text-white hover:text-yellow-600 transition-colors">Community</a>
                 <a href="#products" class="text-white hover:text-yellow-600 transition-colors">Products</a>
             </div>
@@ -44,7 +53,7 @@
             <!-- Mobile Menu -->
             <div id="mobileMenu" class="fixed inset-0 md:hidden hidden">
                 <div class="flex flex-col items-center justify-center h-full space-y-8">
-                    <a href="#about" class="text-2xl font-semibold text-black hover:text-yellow-600 transition-colors">About</a>
+                    <a href="#gallery" class="text-2xl font-semibold text-black hover:text-yellow-600 transition-colors">About</a>
                     <a href="#community" class="text-2xl font-semibold text-black hover:text-yellow-600 transition-colors">Community</a>
                     <a href="#products" class="text-2xl font-semibold text-black hover:text-yellow-600 transition-colors">Products</a>
                 </div>
@@ -124,25 +133,83 @@
     
     <!--Workshop-->
     <section id="Workshop" class="gradient-black">
-
         <div class="mx-auto px-6 py-2 text-center">
+            
             <h2 class="text-5xl font-bold text-white mb-8 animate-slide-up">Free <span class="text-gradient">Workshop</span></h2>
-            <p class="text-2xl md:text-3xl text-white mb-12 max-w-3xl mx-auto leading-relaxed animate-slide-up" style="animation-delay: 0.2s;">
-                I created a special free online workshop, where we’ll dive deep into how to break free from feeling stuck and reconnect with your most powerful self      
-            </p>
-            </div>
-            <div class="flex mx-auto px-4 text-1xl justify-center md:text-1xl leading-loose text-white">
-                <ul class="list-disc list-inside text-3xl md:text-2xl">
-                    <h3 class="text-3xl">During The Workshop You Will:</h3>
-                    <br>
-                    <li>Discover What's Been Holding You Back</li>
-                    <li>Gain Clarity On Your Next Step Forward</li>
-                    <li>Reconnect With Your Confidence And Energy</li>
-                    <li>Leave With A clear Vision Of The Woman You Want To Become</li>
-                    <br>
-                    <h4 class="text-1xl"> JOIN US ON OCTOBER 26TH 11AM PACIFIC / 2PM EASTERN</h4>
-                </ul>
-              
+<h3 class="text-2xl md:text-4xl font-semibold text-white mb-8 animate-slide-up">  I created a special free online workshop, where we will dive deep into how to break free from feeling stuck and reconnect with your most powerful self.</h3>
+<br>
+ <h4 class="text-1xl md:text-3xl font-medium text-white"> During The Workshop You Will:</h4>
+</div>
+        
+<div class="grid grid-cols-3 text-white text-2xl font-weight-light py-2 px-3">
+    <div class="text-center">
+        <lord-icon
+            src="https://cdn.lordicon.com/mtuudzxm.json"
+            trigger="in"
+            delay="1000"
+            colors="primary:#ffffff,secondary:#ffffff"
+            style="width:50px;height:50px">
+        </lord-icon>
+    </div>
+    <div class="col-span-2 items-center">
+        <span class="typewriter" data-text="Discover what's been holding you Back"></span>
+    </div>
+</div>
+
+<div class="grid grid-cols-3 text-white text-2xl py-2 px-3 font-weight-light">
+    <div class="text-center">
+        <lord-icon
+            src="https://cdn.lordicon.com/mtuudzxm.json"
+            trigger="in"
+            delay="2000"
+            colors="primary:#ffffff,secondary:#ffffff"
+            style="width:50px;height:50px">
+        </lord-icon>
+    </div>
+    <div class="col-span-2 items-center">
+        <span class="typewriter" data-text="Gain Clarity On Your Next Step Forward"></span>
+    </div>
+</div>
+
+<div class="grid grid-cols-3 text-white text-2xl py-2 px-3 font-weight-light">
+    <div class="text-center">
+        <lord-icon
+            src="https://cdn.lordicon.com/mtuudzxm.json"
+            trigger="in"
+            delay="3000"
+            colors="primary:#ffffff,secondary:#ffffff"
+            style="width:50px;height:50px">
+        </lord-icon>
+    </div>
+    <div class="col-span-2 items-center">
+        <span class="typewriter" data-text="Reconnect With Your Confidence And Energy"></span>
+    </div>
+</div>
+
+<div class="grid grid-cols-3 text-white py-2 px-3 text-2xl">
+    <div class="text-center">
+        <lord-icon
+            src="https://cdn.lordicon.com/mtuudzxm.json"
+            trigger="in"
+            delay="4000"
+            colors="primary:#ffffff,secondary:#ffffff"
+            style="width:50px;height:50px;position:center">
+        </lord-icon>
+    </div>
+    <div class="col-span-2 items-center">
+        <span class="typewriter" data-text="Leave With A Clear Vision Of The Woman You Want To Become"></span>
+    </div>
+</div>
+
+
+</div>
+</div>
+</div>
+
+
+<div class="text-white text-center py-2">
+                <h4 class="text-lg "> JOIN US ON OCTOBER 26TH 11AM PACIFIC / 2PM EASTERN</h4>
+
             </div>
             <div class="flex flex-col md:flex-row py-2 md:py-4 gap-6 justify-center  items-center animate-slide-up" style="animation-delay: 0.6s; ">
                 <button class="bg-white text-black px-10 py-4 rounded-full text-lg font-semibold border-2 border-yellow-400 hover:bg-yellow-50 hover:scale-105 transition-all duration-300">
@@ -153,37 +220,135 @@
                 </button>
             </div>
         </div>
-    </section>
+</section>
+        
 
-    <!-- About Section -->
-   <section id="about" class=" mx-auto py-20 px-10 overflow-auto gradient-weird">
-      <div class=" grid md:grid-cols-2 gap-10 md:gap-16 items-center">
-
-<div class="animate-slide-up w-full ">
-    <h2 class="text-5xl font-bold text-white">
-          Meet <span class="text-gradient">Eunice</span>
-        </h2>
-        <br>
-    <!-- Swiper -->
-    <div class="swiper aboutSwiper md:h-[900px] rounded-1xl overflow-auto">
-        <div class="swiper-wrapper">
-            <div class="swiper-slide">
-                <img src="eunice2.jpg" class="w-[400px] h-[900px] md:h-full md:w-full object-fit rounded-2xl">
-            </div>
-            <div class="swiper-slide">
-                <img src="eunice3.jpg" class="w-[400px] h-[900px] md:h-full md:w-full object-fit rounded-2xl">
-            </div>
-            <div class="swiper-slide">
-                <img src="eunice4.jpg" class="w-[400px] h-[900px] md:h-full md:w-full object-fit rounded-2xl">
-            </div>
-        </div>
-        <!-- Add Pagination -->
-        <div class="swiper-pagination"></div>
-        <!-- Add Navigation -->
-        <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
+<article id="gallery" class="py-10 gradient-black">
+    <div class="header animate-slide-up text-center py-2 px-10">
+        <h2 class="text-2xl md:text-6xl text-gradient">Meet Eunice </h2>
+    <br>
+        <h2 class="text-2xl text-white ">Passionate about womens transformation:</h2>
     </div>
-</div>
+    <section class="img-group-container justify-center">
+        <div>
+            <ul class="img-group">
+                <li class="img-container">
+                    <img src="eunice2.jpg" />
+                    <h3>For 10 years I worked as a hairstylist, believing that if women looked good on the outside, their lives would feel perfect.</h3>
+                </li>
+                <li class="img-container">
+                    <img src="eunice3.jpg" />
+                    <h3>But through thousands of conversations in the beauty industry, I discovered something deeper: true satisfaction doesn't come only from looking good.</h3>
+                </li>
+                <li class="img-container">
+                    <img src="eunice4.jpg" />
+                    <h3>It comes from how we see ourselves.</h3>
+                </li>
+               <li class="img-container">
+                    <h3>"The way you perceive yourself can either open unimaginable doors 
+                        <br>or limit you completely."</h3>
+                </li>
+            
+            </ul>
+        </div>
+        </div>
+    
+    
+</article>
+
+
+<script type="module">
+    import { animate, scroll } from "https://cdn.jsdelivr.net/npm/motion@12.23.12/+esm"
+
+    const items = document.querySelectorAll(".img-container")
+
+    // Animate gallery horizontally during vertical scroll
+    scroll(
+        animate(".img-group", {
+            transform: ["none", `translateX(-${items.length - 1}00vw)`],
+        }),
+        { target: document.querySelector(".img-group-container") }
+    )
+
+    // Progress bar representing gallery scroll
+    scroll(animate(".progress", { scaleX: [0, 1] }), {
+        target: document.querySelector(".img-group-container"),
+    })
+</script>
+
+<style>
+    #gallery {
+        width: 98vw;
+    }
+
+    #gallery h3 {
+        font-family: "" Azeret Mono "", monospace;
+    }
+
+    #gallery header{
+        height: 70vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .img-group-container {
+        height: 500vh;
+        position: relative;
+    }
+
+    .img-group-container > div {
+        position: sticky;
+        top: 0;
+        overflow: hidden;
+        height: 100vh;
+    }
+
+    .img-group {
+        display: flex;
+    }
+
+    .img-container {
+        display: flex;
+        width: 100vw;
+        height: 100vh;
+        flex: 0 0 auto;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    #gallery header h2 {
+        font-size: 60px;
+        font-weight: 600;
+        letter-spacing: 3px;
+        line-height: 1.2;
+        text-align: center;
+        margin: 0;
+    }
+
+    .img-container h3 {
+        margin: 0;
+        color: white;
+        font-size: 20px;
+        font-weight: 300;
+        letter-spacing: 2px;
+        line-height: 1.2;
+        position: relative;
+        top: 20px;
+        display: inline-block;
+    }
+
+    .img-container img {
+        width: 300px;
+        height: 400px;
+    }
+
+   
+</style>
+
+
+    
 
     
     
@@ -191,31 +356,7 @@
 
 
 
-      <!-- Text Content -->
-      <div class="space-y-8 animate-slide-up"  style="animation-delay: 0.3s;">
-       
-        <div class="space-y-6 text-lg  text-white leading-relaxed">
-          <p>
-            <strong>Passionate about women's transformation.</strong> For 10 years I worked as a hairstylist, 
-            believing that if women looked good on the outside, their lives would feel perfect.
-          </p>
-          <p>
-            But through thousands of conversations in the beauty industry, I discovered something deeper: 
-            <span class="font-semibold text-white">true satisfaction doesn't come only from looking good.</span>
-          </p>
-          <p>
-            <span class="text-gradient font-bold">It comes from how we see ourselves.</span>
-          </p>
-        </div>
-        <div class="bg-white border-2 border-yellow-400 p-6 rounded-xl">
-          <p class="text-black font-semibold text-lg text-center">
-            "The way you perceive yourself can either open unimaginable doors or limit you completely."
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+     
 
     <!-- Self-Image Discovery Section -->
     <section class="py-10 gradient-weird">
@@ -631,3 +772,4 @@
 <script type="module" src="ogl-scene.js"></script>
     <!-- Scripts -->
     <script src="script.js"></script>
+<script src="https://cdn.lordicon.com/lordicon.js"></script>
