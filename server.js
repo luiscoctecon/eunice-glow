@@ -5,6 +5,7 @@ const cors = require('cors');
 const path = require('path');
 const mongoose = require('mongoose');
 const cron = require('node-cron');
+const WorkshopRegistration = require('./models/WorkshopRegistration');
 
 const app = express();
 app.use(express.json());
@@ -241,6 +242,54 @@ function calculateQuizType(answers) {
 }
 
 const PORT = process.env.PORT || 3000;
+// Workshop signup endpoint
+app.post('/workshop-signup', async (req, res) => {
+    try {
+        const { fullName, whatsapp, email } = req.body;
+        
+        // Create new registration
+        const registration = new WorkshopRegistration({
+            fullName,
+            whatsapp,
+            email
+        });
+        
+        await registration.save();
+
+        // Send confirmation email
+        await transporter.sendMail({
+            from: `"${process.env.EMAIL_FROM_NAME}" <${process.env.EMAIL_USER}>`,
+            to: email,
+            subject: '🌟 Welcome to Our Free Transformation Workshop!',
+            html: `
+                <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+                    <h1 style="color: #b8860b;">Welcome, ${fullName}!</h1>
+                    <p>Thank you for signing up for our free transformation workshop!</p>
+                    <p>Here's what you need to know:</p>
+                    <ul>
+                        <li>We'll be sending workshop details to your WhatsApp (${whatsapp})</li>
+                        <li>The workshop will be interactive and transformative</li>
+                        <li>You'll receive your workbook and resources before we begin</li>
+                    </ul>
+                    <p>Watch your WhatsApp for more information coming soon!</p>
+                    <p style="color: #666;">With excitement,<br>Eunice</p>
+                </div>
+            `
+        });
+
+        res.json({ 
+            success: true, 
+            message: 'Registration successful' 
+        });
+    } catch (error) {
+        console.error('Workshop registration error:', error);
+        res.status(500).json({ 
+            success: false, 
+            error: 'Failed to process registration' 
+        });
+    }
+});
+
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
