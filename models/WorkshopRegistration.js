@@ -1,22 +1,39 @@
-const mongoose = require('mongoose');
+const form = document.getElementById('form');
+const result = document.getElementById('result');
 
-const workshopRegistrationSchema = new mongoose.Schema({
-    fullName: {
-        type: String,
-        required: true
-    },
-    whatsapp: {
-        type: String,
-        required: true
-    },
-    email: {
-        type: String,
-        required: true
-    },
-    registeredAt: {
-        type: Date,
-        default: Date.now
-    }
+form.addEventListener('submit', function(e) {
+  e.preventDefault();
+  const formData = new FormData(form);
+  const object = Object.fromEntries(formData);
+  const json = JSON.stringify(object);
+  result.innerHTML = "Please wait..."
+
+    fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: json
+        })
+        .then(async (response) => {
+            let json = await response.json();
+            if (response.status == 200) {
+                result.innerHTML = "Thank you for joining the workshop! We'll send you the details via email";
+            } else {
+                console.log(response);
+                result.innerHTML = json.message;
+            }
+        })
+        .catch(error => {
+            console.log(error);
+            result.innerHTML = "Something went wrong!";
+        })
+        .then(function() {
+            form.reset();
+            setTimeout(() => {
+                result.style.display = "none";
+            }, 3000);
+        });
 });
 
-module.exports = mongoose.model('WorkshopRegistration', workshopRegistrationSchema);

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="favicon.svg" type="image/eunice-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You - Eunice Inside Glow</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Display:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        .thank-you-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .shine-effect {
+            animation: shine 2s infinite;
+        }
+        
+        @keyframes shine {
+            0% { opacity: 1; }
+            50% { opacity: 0.6; }
+            100% { opacity: 1; }
+        }
+        
+        .float-effect {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br py-0 from-black to-black min-h-screen">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full backdrop-blur-md z-50 shadow-sm">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <a href="index.html" class="text-white text-xl font-semibold">Eunice Inside Glow</a>
+                <a href="index.html" class="text-white hover:text-gray-300">
+                    <i class="fas fa-home"></i> Home
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 min-h-screen flex py-10 items-center justify-center">
+        <div class="max-w-2xl mx-auto text-center thank-you-card rounded-lg p-12">
+            <!-- Star Icon -->
+            <div class="text-6xl mb-8 text-yellow-500 shine-effect float-effect">
+                <i class="fas fa-star"></i>
+            </div>
+            
+            <!-- Thank You Message -->
+            <h1 class="text-4xl md:text-5xl font-bold mb-6 text-gradient">
+                Thank You for Joining Us!
+            </h1>
+            
+            <p class="text-gray-300 text-xl mb-8">
+                We're excited to have you in our transformation workshop. We will email you soon for confirmation and next steps!
+            </p>
+            
+            <!-- What's Next Section -->
+            <div class="grid md:grid-cols-2 gap-6 text-left mb-12">
+                <div class="p-6 rounded-lg bg-opacity-10 bg-white">
+                    <h3 class="text-xl font-semibold mb-4 text-yellow-500">
+                        <i class="fas fa-envelope mr-2"></i> Check Your Email
+                    </h3>
+                    <p class="text-gray-300">
+                        We will send you a confirmation email with important workshop details.
+                    </p>
+                </div>
+                
+                <div class="p-6 rounded-lg bg-opacity-10 bg-white">
+                    <h3 class="text-xl font-semibold mb-4 text-yellow-500">
+                        <i class="fab fa-whatsapp mr-2"></i> Watch WhatsApp
+                    </h3>
+                    <p class="text-gray-300">
+                        You will also receive workshop updates and materials via WhatsApp.
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Return Home Button -->
+             <div class="py2">
+            <a href="index.html" 
+               class="inline-block py-3 px-8 text-center text-white rounded-md bg-gradient-to-r from-yellow-600 to-yellow-700 hover:from-yellow-700 hover:to-yellow-800 transition-all duration-300 transform hover:scale-105">
+                <i class="fas fa-home mr-2"></i> Return to Homepage
+            </a>
+            </div>
+            <br>
+            <a href="heraesntls.com/shop"
+               class="inline-block py-3 px-8 text-center text-white rounded-md bg-gradient-to-r from-yellow-600 to-yellow-700 hover:from-yellow-700 hover:to-yellow-800 transition-all duration-300 transform hover:scale-105">
+                <i class="fas fa-shopping-cart mr-2"></i> See my collection
+            </a>
+        </div>
+    </div>
+
+    <!-- Social Links -->
+    <div class="fixed bottom-6 left-0 w-full text-center">
+        <div class="space-x-6">
+            <a href="https://www.instagram.com/eunice_insideglow/" class="text-gray-400 hover:text-yellow-500 transition-colors">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://www.facebook.com/eunice.hairstyle.7" class="text-gray-400 hover:text-yellow-500 transition-colors">
+                <i class="fab fa-facebook"></i>
+            </a>
+            
+        </div>
+    </div>
+</body>
+</html>

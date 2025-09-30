@@ -80,7 +80,7 @@
             <div class="grid grid-cols-3 absolute justify-center items-center top-0 left-0 flex">
                 
                     <div class=" col-span-2 justify-center items-center py-10 md:py-40">
-                        <h1 class="text-[23px] md:text-5xl leading-relaxed text-white/90 mb-4 animate-slide-up" style="animation-delay: 0.4s;">
+                        <h1 class="text-[23px] md:text-6xl leading-relaxed text-white/90 mb-4 animate-slide-up" style="animation-delay: 0.4s;">
                             Do You Dream About Becoming The Best Version Of Yourself
                             <br>
                             <br>  But Feel Lost About Where To Start?
@@ -264,7 +264,7 @@
     </div>
     <section class="img-group-container py-0 justify-center">
         <div>
-            <ul class="img-group">
+            <ul class="img-group ">
                 <li class="img-container">
                     <img src="eunice2.jpg" />
                     <h3>For 10 years I worked as a hairstylist, believing that if women looked good on the outside, their lives would feel perfect.</h3>
@@ -299,7 +299,7 @@
     // Animate gallery horizontally during vertical scroll
     scroll(
         animate(".img-group", {
-            transform: ["none", `translateX(-${items.length - 1}00vw)`],
+            transform: ["none", `translateX(-${items.length - 1}04vw)`],
         }),
         { target: document.querySelector(".img-group-container") }
     )
@@ -309,7 +309,7 @@
 
 <style>
     #gallery {
-        width: 98vw;
+        width: 100vw;
     }
 
     #gallery h3 {
@@ -331,7 +331,7 @@
     .img-group-container > div {
         position: sticky;
         top: 0;
-        overflow: hidden;
+        overflow: auto;
         height: 100vh;
     }
 
