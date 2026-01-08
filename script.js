@@ -95,7 +95,60 @@ window.addEventListener('DOMContentLoaded', handleTypewriterOnScroll);
         
 
 
-  
+   // Modal logic
+    const modal = document.getElementById('eventModal');
+    const closeModalBtn = document.getElementById('closeModalBtn');
+    const eventBtns = document.querySelectorAll('.event-btn');
+    const form = document.getElementById('eventSignupForm');
+    const successMsg = document.getElementById('modalSuccessMsg');
+
+    // Open modal on any event button click
+    for (const btn of eventBtns) {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        modal.style.display = 'block';
+        form.style.display = '';
+        successMsg.style.display = 'none';
+        form.reset();
+      });
+    }
+    // Close modal
+    closeModalBtn.onclick = () => modal.style.display = 'none';
+    window.onclick = (e) => { if (e.target === modal) modal.style.display = 'none'; };
+    window.onkeydown = (e) => { if (e.key === 'Escape') modal.style.display = 'none'; };
+
+    // Phone formatting
+    form.modalWhatsapp && form.modalWhatsapp.addEventListener('input', (e) => {
+      let x = e.target.value.replace(/\D/g, '').match(/(\d{0,1})(\d{0,3})(\d{0,3})(\d{0,4})/);
+      e.target.value = !x[2] ? x[1] : '+' + x[1] + ' (' + x[2] + ') ' + (x[3] ? x[3] + '-' : '') + x[4];
+    });
+
+    // Handle form submit
+    form.onsubmit = async function(ev) {
+      ev.preventDefault();
+      // You can change the endpoint below to your actual event sign-up handler
+      const data = {
+        fullName: form.modalFullName.value,
+        whatsapp: form.modalWhatsapp.value,
+        email: form.modalEmail.value
+      };
+      try {
+        // Example: send to your server
+        const res = await fetch('/workshop-signup', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        if (res.ok) {
+          form.style.display = 'none';
+          successMsg.style.display = 'block';
+        } else {
+          alert('There was an error signing up. Please try again.');
+        }
+      } catch (err) {
+        alert('There was an error signing up. Please try again.');
+      }
+    };
   
   // Initialize About Swiper
 document.addEventListener('DOMContentLoaded', function() {
@@ -125,1020 +178,275 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
+// Calendar and Event Reminders
+// Define an array to store events
+let events = [];
+
+// letiables to store event input fields and reminder list
+let eventDateInput =
+	document.getElementById("eventDate");
+let eventTitleInput =
+	document.getElementById("eventTitle");
+let eventDescriptionInput =
+	document.getElementById("eventDescription");
+let reminderList =
+	document.getElementById("reminderList");
+
+// Counter to generate unique event IDs
+let eventIdCounter = 1;
+
+// Function to add events
+function addEvent() {
+	let date = eventDateInput.value;
+	let title = eventTitleInput.value;
+	let description = eventDescriptionInput.value;
+
+	if (date && title) {
+		// Create a unique event ID
+		let eventId = eventIdCounter++;
+
+		events.push(
+			{
+				id: eventId, date: date,
+				title: title,
+				description: description
+			}
+		);
+		showCalendar(currentMonth, currentYear);
+		eventDateInput.value = "";
+		eventTitleInput.value = "";
+		eventDescriptionInput.value = "";
+		displayReminders();
+	}
+}
+
+// Function to delete an event by ID
+function deleteEvent(eventId) {
+	// Find the index of the event with the given ID
+	let eventIndex =
+		events.findIndex((event) =>
+			event.id === eventId);
+
+	if (eventIndex !== -1) {
+		// Remove the event from the events array
+		events.splice(eventIndex, 1);
+		showCalendar(currentMonth, currentYear);
+		displayReminders();
+	}
+}
+
+// Function to display reminders
+function displayReminders() {
+	reminderList.innerHTML = "";
+	for (let i = 0; i < events.length; i++) {
+		let event = events[i];
+		let eventDate = new Date(event.date);
+		if (eventDate.getMonth() ===
+			currentMonth &&
+			eventDate.getFullYear() ===
+			currentYear) {
+			let listItem = document.createElement("li");
+			listItem.innerHTML =
+				`<strong>${event.title}</strong> - 
+			${event.description} on 
+			${eventDate.toLocaleDateString()}`;
+
+			// Add a delete button for each reminder item
+			let deleteButton =
+				document.createElement("button");
+			deleteButton.className = "delete-event";
+			deleteButton.textContent = "Delete";
+			deleteButton.onclick = function () {
+				deleteEvent(event.id);
+			};
+
+			listItem.appendChild(deleteButton);
+			reminderList.appendChild(listItem);
+		}
+	}
+}
+
+// Function to generate a range of 
+// years for the year select input
+function generate_year_range(start, end) {
+	let years = "";
+	for (let year = start; year <= end; year++) {
+		years += "<option value='" +
+			year + "'>" + year + "</option>";
+	}
+	return years;
+}
+
+// Initialize date-related letiables
+today = new Date();
+currentMonth = today.getMonth();
+currentYear = today.getFullYear();
+selectYear = document.getElementById("year");
+selectMonth = document.getElementById("month");
+
+createYear = generate_year_range(1970, 2050);
+
+document.getElementById("year").innerHTML = createYear;
+
+let calendar = document.getElementById("calendar");
+
+let months = [
+	"January",
+	"February",
+	"March",
+	"April",
+	"May",
+	"June",
+	"July",
+	"August",
+	"September",
+	"October",
+	"November",
+	"December"
+];
+let days = [
+	"Sun", "Mon", "Tue", "Wed",
+	"Thu", "Fri", "Sat"];
+
+$dataHead = "<tr>";
+for (dhead in days) {
+	$dataHead += "<th data-days='" +
+		days[dhead] + "'>" +
+		days[dhead] + "</th>";
+}
+$dataHead += "</tr>";
+
+document.getElementById("thead-month").innerHTML = $dataHead;
+
+monthAndYear =
+	document.getElementById("monthAndYear");
+showCalendar(currentMonth, currentYear);
+
+// Function to navigate to the next month
+function next() {
+	currentYear = currentMonth === 11 ?
+		currentYear + 1 : currentYear;
+	currentMonth = (currentMonth + 1) % 12;
+	showCalendar(currentMonth, currentYear);
+}
+
+// Function to navigate to the previous month
+function previous() {
+	currentYear = currentMonth === 0 ?
+		currentYear - 1 : currentYear;
+	currentMonth = currentMonth === 0 ?
+		11 : currentMonth - 1;
+	showCalendar(currentMonth, currentYear);
+}
+
+// Function to jump to a specific month and year
+function jump() {
+	currentYear = parseInt(selectYear.value);
+	currentMonth = parseInt(selectMonth.value);
+	showCalendar(currentMonth, currentYear);
+}
+
+// Function to display the calendar
+function showCalendar(month, year) {
+	let firstDay = new Date(year, month, 1).getDay();
+	tbl = document.getElementById("calendar-body");
+	tbl.innerHTML = "";
+	monthAndYear.innerHTML = months[month] + " " + year;
+	selectYear.value = year;
+	selectMonth.value = month;
+
+	let date = 1;
+	for (let i = 0; i < 6; i++) {
+		let row = document.createElement("tr");
+		for (let j = 0; j < 7; j++) {
+			if (i === 0 && j < firstDay) {
+				cell = document.createElement("td");
+				cellText = document.createTextNode("");
+				cell.appendChild(cellText);
+				row.appendChild(cell);
+			} else if (date > daysInMonth(month, year)) {
+				break;
+			} else {
+				cell = document.createElement("td");
+				cell.setAttribute("data-date", date);
+				cell.setAttribute("data-month", month + 1);
+				cell.setAttribute("data-year", year);
+				cell.setAttribute("data-month_name", months[month]);
+				cell.className = "date-picker";
+				cell.innerHTML = "<span>" + date + "</span";
+
+				if (
+					date === today.getDate() &&
+					year === today.getFullYear() &&
+					month === today.getMonth()
+				) {
+					cell.className = "date-picker selected";
+				}
+
+				// Check if there are events on this date
+				if (hasEventOnDate(date, month, year)) {
+					cell.classList.add("event-marker");
+					cell.appendChild(
+						createEventTooltip(date, month, year)
+				);
+				}
+
+				row.appendChild(cell);
+				date++;
+			}
+		}
+		tbl.appendChild(row);
+	}
+
+	displayReminders();
+}
+
+// Function to create an event tooltip
+function createEventTooltip(date, month, year) {
+	let tooltip = document.createElement("div");
+	tooltip.className = "event-tooltip";
+	let eventsOnDate = getEventsOnDate(date, month, year);
+	for (let i = 0; i < eventsOnDate.length; i++) {
+		let event = eventsOnDate[i];
+		let eventDate = new Date(event.date);
+		let eventText = `<strong>${event.title}</strong> - 
+			${event.description} on 
+			${eventDate.toLocaleDateString()}`;
+		let eventElement = document.createElement("p");
+		eventElement.innerHTML = eventText;
+		tooltip.appendChild(eventElement);
+	}
+	return tooltip;
+}
+
+// Function to get events on a specific date
+function getEventsOnDate(date, month, year) {
+	return events.filter(function (event) {
+		let eventDate = new Date(event.date);
+		return (
+			eventDate.getDate() === date &&
+			eventDate.getMonth() === month &&
+			eventDate.getFullYear() === year
+		);
+	});
+}
+
+// Function to check if there are events on a specific date
+function hasEventOnDate(date, month, year) {
+	return getEventsOnDate(date, month, year).length > 0;
+}
+
+// Function to get the number of days in a month
+function daysInMonth(iMonth, iYear) {
+	return 32 - new Date(iYear, iMonth, 32).getDate();
+}
+
+// Call the showCalendar function initially to display the calendar
+showCalendar(currentMonth, currentYear);
 
 
 
-//heat protector 
 
-/*<![CDATA[*/
-(function () {
-  var scriptURL = 'https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js';
-  if (window.ShopifyBuy) {
-    if (window.ShopifyBuy.UI) {
-      ShopifyBuyInit();
-    } else {
-      loadScript();
-    }
-  } else {
-    loadScript();
-  }
-  function loadScript() {
-    var script = document.createElement('script');
-    script.async = true;
-    script.src = scriptURL;
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(script);
-    script.onload = ShopifyBuyInit;
-  }
-  function ShopifyBuyInit() {
-    var client = ShopifyBuy.buildClient({
-      domain: 'eyf6fx-fu.myshopify.com',
-      storefrontAccessToken: '3768e3aa0c990cd25c93de476895152e',
-    });
-    ShopifyBuy.UI.onReady(client).then(function (ui) {
-      ui.createComponent('product', {
-        id: '9850646626621',
-        node: document.getElementById('product-component-1756993139235'),
-        moneyFormat: '%24%7B%7Bamount%7D%7D',
-        options: {
-  "product": {
-    "styles": {
-      "product": {
-        "@media (min-width: 601px)": {
-          "max-width": "calc(25% - 20px)",
-          "margin-left": "20px",
-          "margin-bottom": "50px"
-        },
-        "carousel-button": {
-          "display": "none"
-        }
-      },
-      "title": {
-        "font-family": "Droid Serif, serif",
-        "color": "#ffffff"
-      },
-      "button": {
-        "font-family": "Droid Serif, serif",
-        "font-weight": "bold",
-        "font-size": "14px",
-        "padding-top": "15px",
-        "padding-bottom": "15px",
-        "color": "#000000",
-        ":hover": {
-          "color": "#000000",
-          "background-color": "#e6e6e6"
-        },
-        "background-color": "#ffffff",
-        ":focus": {
-          "background-color": "#e6e6e6"
-        },
-        "border-radius": "10px",
-        "padding-left": "64px",
-        "padding-right": "64px"
-      },
-      "quantityInput": {
-        "font-size": "14px",
-        "padding-top": "15px",
-        "padding-bottom": "15px"
-      },
-      "price": {
-        "color": "#ffffff"
-      },
-      "compareAt": {
-        "color": "#ffffff"
-      },
-      "unitPrice": {
-        "color": "#ffffff"
-      },
-      "description": {
-        "font-family": "PT Serif, serif",
-        "color": "#ffffff"
-      }
-    },
-    "buttonDestination": "modal",
-    "contents": {
-      "img": false,
-      "imgWithCarousel": true,
-      "options": false
-    },
-    "text": {
-      "button": "View product"
-    },
-    "googleFonts": [
-      "Droid Serif",
-      "PT Serif"
-    ]
-  },
-  "productSet": {
-    "styles": {
-      "products": {
-        "@media (min-width: 601px)": {
-          "margin-left": "-20px"
-        }
-      }
-    }
-  },
-  "modalProduct": {
-    "contents": {
-      "img": false,
-      "imgWithCarousel": true,
-      "button": false,
-      "buttonWithQuantity": true
-    },
-    "styles": {
-      "product": {
-        "@media (min-width: 601px)": {
-          "max-width": "100%",
-          "margin-left": "0px",
-          "margin-bottom": "0px"
-        }
-      },
-      "button": {
-        "font-family": "Droid Serif, serif",
-        "font-weight": "bold",
-        "font-size": "14px",
-        "padding-top": "15px",
-        "padding-bottom": "15px",
-        "color": "#000000",
-        ":hover": {
-          "color": "#000000",
-          "background-color": "#e6e6e6"
-        },
-        "background-color": "#ffffff",
-        ":focus": {
-          "background-color": "#e6e6e6"
-        },
-        "border-radius": "10px",
-        "padding-left": "64px",
-        "padding-right": "64px"
-      },
-      "quantityInput": {
-        "font-size": "14px",
-        "padding-top": "15px",
-        "padding-bottom": "15px"
-      },
-      "title": {
-        "font-family": "PT Serif, serif",
-        "font-weight": "bold",
-        "font-size": "26px",
-        "color": "#fdfdfd"
-      },
-      "price": {
-        "font-family": "PT Serif, serif",
-        "font-weight": "bold",
-        "font-size": "18px",
-        "color": "#ffffff"
-      },
-      "compareAt": {
-        "font-family": "PT Serif, serif",
-        "font-weight": "bold",
-        "font-size": "15.299999999999999px",
-        "color": "#ffffff"
-      },
-      "unitPrice": {
-        "font-family": "PT Serif, serif",
-        "font-weight": "bold",
-        "font-size": "15.299999999999999px",
-        "color": "#ffffff"
-      },
-      "description": {
-        "font-family": "PT Serif, serif",
-        "font-weight": "normal",
-        "font-size": "14px",
-        "color": "#ffffff"
-      }
-    },
-    "googleFonts": [
-      "PT Serif",
-      "Droid Serif"
-    ],
-    "text": {
-      "button": "Add to cart"
-    }
-  },
-  "modal": {
-    "styles": {
-      "modal": {
-        "background-color": "#000000"
-      }
-    }
-  },
-  "option": {},
-  "cart": {
-    "styles": {
-      "button": {
-        "font-family": "Droid Serif, serif",
-        "font-weight": "bold",
-        "font-size": "14px",
-        "padding-top": "15px",
-        "padding-bottom": "15px",
-        "color": "#000000",
-        ":hover": {
-          "color": "#000000",
-          "background-color": "#e6e6e6"
-        },
-        "background-color": "#ffffff",
-        ":focus": {
-          "background-color": "#e6e6e6"
-        },
-        "border-radius": "10px"
-      },
-      "title": {
-        "color": "#000000"
-      },
-      "header": {
-        "color": "#000000"
-      },
-      "lineItems": {
-        "color": "#000000"
-      },
-      "subtotalText": {
-        "color": "#000000"
-      },
-      "subtotal": {
-        "color": "#000000"
-      },
-      "notice": {
-        "color": "#000000"
-      },
-      "currency": {
-        "color": "#000000"
-      },
-      "close": {
-        "color": "#000000",
-        ":hover": {
-          "color": "#000000"
-        }
-      },
-      "empty": {
-        "color": "#000000"
-      },
-      "noteDescription": {
-        "color": "#000000"
-      },
-      "discountText": {
-        "color": "#000000"
-      },
-      "discountIcon": {
-        "fill": "#000000"
-      },
-      "discountAmount": {
-        "color": "#000000"
-      }
-    },
-    "text": {
-      "total": "Subtotal",
-      "button": "Let's Nourish That Hair!"
-    },
-    "googleFonts": [
-      "Droid Serif"
-    ]
-  },
-  "toggle": {
-    "styles": {
-      "toggle": {
-        "font-family": "Droid Serif, serif",
-        "font-weight": "bold",
-        "background-color": "#ffffff",
-        ":hover": {
-          "background-color": "#e6e6e6"
-        },
-        ":focus": {
-          "background-color": "#e6e6e6"
-        }
-      },
-      "count": {
-        "font-size": "14px",
-        "color": "#000000",
-        ":hover": {
-          "color": "#000000"
-        }
-      },
-      "iconPath": {
-        "fill": "#000000"
-      }
-    },
-    "googleFonts": [
-      "Droid Serif"
-    ]
-  },
-  "lineItem": {
-    "styles": {
-      "variantTitle": {
-        "color": "#000000"
-      },
-      "title": {
-        "color": "#000000"
-      },
-      "price": {
-        "color": "#000000"
-      },
-      "fullPrice": {
-        "color": "#000000"
-      },
-      "discount": {
-        "color": "#000000"
-      },
-      "discountIcon": {
-        "fill": "#000000"
-      },
-      "quantity": {
-        "color": "#000000"
-      },
-      "quantityIncrement": {
-        "color": "#000000",
-        "border-color": "#000000"
-      },
-      "quantityDecrement": {
-        "color": "#000000",
-        "border-color": "#000000"
-      },
-      "quantityInput": {
-        "color": "#000000",
-        "border-color": "#000000"
-      }
-    }
-  }
-},
-      });
-    });
-  }
-})();
-/*]]>*/
-
-
-//oil 
-
-/*<![CDATA[*/
-(function () {
-  var scriptURL = 'https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js';
-  if (window.ShopifyBuy) {
-    if (window.ShopifyBuy.UI) {
-      ShopifyBuyInit();
-    } else {
-      loadScript();
-    }
-  } else {
-    loadScript();
-  }
-  function loadScript() {
-    var script = document.createElement('script');
-    script.async = true;
-    script.src = scriptURL;
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(script);
-    script.onload = ShopifyBuyInit;
-  }
-  function ShopifyBuyInit() {
-    var client = ShopifyBuy.buildClient({
-      domain: 'eyf6fx-fu.myshopify.com',
-      storefrontAccessToken: '3768e3aa0c990cd25c93de476895152e',
-    });
-    ShopifyBuy.UI.onReady(client).then(function (ui) {
-      ui.createComponent('product', {
-        id: '9850645643581',
-        node: document.getElementById('product-component-1756993292886'),
-        moneyFormat: '%24%7B%7Bamount%7D%7D',
-        options: {
-  "product": {
-    "styles": {
-      "product": {
-        "@media (min-width: 601px)": {
-          "max-width": "calc(25% - 20px)",
-          "margin-left": "20px",
-          "margin-bottom": "50px"
-        },
-        "carousel-button": {
-          "display": "none"
-        }
-      },
-      "title": {
-        "font-family": "Droid Serif, serif",
-        "color": "#ffffff"
-      },
-      "button": {
-        "font-family": "Droid Serif, serif",
-        "font-weight": "bold",
-        "font-size": "14px",
-        "padding-top": "15px",
-        "padding-bottom": "15px",
-        "color": "#000000",
-        ":hover": {
-          "color": "#000000",
-          "background-color": "#e6e6e6"
-        },
-        "background-color": "#ffffff",
-        ":focus": {
-          "background-color": "#e6e6e6"
-        },
-        "border-radius": "10px",
-        "padding-left": "64px",
-        "padding-right": "64px"
-      },
-      "quantityInput": {
-        "font-size": "14px",
-        "padding-top": "15px",
-        "padding-bottom": "15px"
-      },
-      "price": {
-        "color": "#ffffff"
-      },
-      "compareAt": {
-        "color": "#ffffff"
-      },
-      "unitPrice": {
-        "color": "#ffffff"
-      },
-      "description": {
-        "font-family": "PT Serif, serif",
-        "color": "#ffffff"
-      }
-    },
-    "buttonDestination": "modal",
-    "contents": {
-      "img": false,
-      "imgWithCarousel": true,
-      "options": false
-    },
-    "text": {
-      "button": "View product"
-    },
-    "googleFonts": [
-      "Droid Serif",
-      "PT Serif"
-    ]
-  },
-  "productSet": {
-    "styles": {
-      "products": {
-        "@media (min-width: 601px)": {
-          "margin-left": "-20px"
-        }
-      }
-    }
-  },
-  "modalProduct": {
-    "contents": {
-      "img": false,
-      "imgWithCarousel": true,
-      "button": false,
-      "buttonWithQuantity": true
-    },
-    "styles": {
-      "product": {
-        "@media (min-width: 601px)": {
-          "max-width": "100%",
-          "margin-left": "0px",
-          "margin-bottom": "0px"
-        }
-      },
-      "button": {
-        "font-family": "Droid Serif, serif",
-        "font-weight": "bold",
-        "font-size": "14px",
-        "padding-top": "15px",
-        "padding-bottom": "15px",
-        "color": "#000000",
-        ":hover": {
-          "color": "#000000",
-          "background-color": "#e6e6e6"
-        },
-        "background-color": "#ffffff",
-        ":focus": {
-          "background-color": "#e6e6e6"
-        },
-        "border-radius": "10px",
-        "padding-left": "64px",
-        "padding-right": "64px"
-      },
-      "quantityInput": {
-        "font-size": "14px",
-        "padding-top": "15px",
-        "padding-bottom": "15px"
-      },
-      "title": {
-        "font-family": "PT Serif, serif",
-        "font-weight": "bold",
-        "font-size": "26px",
-        "color": "#fdfdfd"
-      },
-      "price": {
-        "font-family": "PT Serif, serif",
-        "font-weight": "bold",
-        "font-size": "18px",
-        "color": "#ffffff"
-      },
-      "compareAt": {
-        "font-family": "PT Serif, serif",
-        "font-weight": "bold",
-        "font-size": "15.299999999999999px",
-        "color": "#ffffff"
-      },
-      "unitPrice": {
-        "font-family": "PT Serif, serif",
-        "font-weight": "bold",
-        "font-size": "15.299999999999999px",
-        "color": "#ffffff"
-      },
-      "description": {
-        "font-family": "PT Serif, serif",
-        "font-weight": "normal",
-        "font-size": "14px",
-        "color": "#ffffff"
-      }
-    },
-    "googleFonts": [
-      "PT Serif",
-      "Droid Serif"
-    ],
-    "text": {
-      "button": "Add to cart"
-    }
-  },
-  "modal": {
-    "styles": {
-      "modal": {
-        "background-color": "#000000"
-      }
-    }
-  },
-  "option": {},
-  "cart": {
-    "styles": {
-      "button": {
-        "font-family": "Droid Serif, serif",
-        "font-weight": "bold",
-        "font-size": "14px",
-        "padding-top": "15px",
-        "padding-bottom": "15px",
-        "color": "#000000",
-        ":hover": {
-          "color": "#000000",
-          "background-color": "#e6e6e6"
-        },
-        "background-color": "#ffffff",
-        ":focus": {
-          "background-color": "#e6e6e6"
-        },
-        "border-radius": "10px"
-      },
-      "title": {
-        "color": "#000000"
-      },
-      "header": {
-        "color": "#000000"
-      },
-      "lineItems": {
-        "color": "#000000"
-      },
-      "subtotalText": {
-        "color": "#000000"
-      },
-      "subtotal": {
-        "color": "#000000"
-      },
-      "notice": {
-        "color": "#000000"
-      },
-      "currency": {
-        "color": "#000000"
-      },
-      "close": {
-        "color": "#000000",
-        ":hover": {
-          "color": "#000000"
-        }
-      },
-      "empty": {
-        "color": "#000000"
-      },
-      "noteDescription": {
-        "color": "#000000"
-      },
-      "discountText": {
-        "color": "#000000"
-      },
-      "discountIcon": {
-        "fill": "#000000"
-      },
-      "discountAmount": {
-        "color": "#000000"
-      }
-    },
-    "text": {
-      "total": "Subtotal",
-      "button": "Let's Nourish That Hair!"
-    },
-    "googleFonts": [
-      "Droid Serif"
-    ]
-  },
-  "toggle": {
-    "styles": {
-      "toggle": {
-        "font-family": "Droid Serif, serif",
-        "font-weight": "bold",
-        "background-color": "#ffffff",
-        ":hover": {
-          "background-color": "#e6e6e6"
-        },
-        ":focus": {
-          "background-color": "#e6e6e6"
-        }
-      },
-      "count": {
-        "font-size": "14px",
-        "color": "#000000",
-        ":hover": {
-          "color": "#000000"
-        }
-      },
-      "iconPath": {
-        "fill": "#000000"
-      }
-    },
-    "googleFonts": [
-      "Droid Serif"
-    ]
-  },
-  "lineItem": {
-    "styles": {
-      "variantTitle": {
-        "color": "#000000"
-      },
-      "title": {
-        "color": "#000000"
-      },
-      "price": {
-        "color": "#000000"
-      },
-      "fullPrice": {
-        "color": "#000000"
-      },
-      "discount": {
-        "color": "#000000"
-      },
-      "discountIcon": {
-        "fill": "#000000"
-      },
-      "quantity": {
-        "color": "#000000"
-      },
-      "quantityIncrement": {
-        "color": "#000000",
-        "border-color": "#000000"
-      },
-      "quantityDecrement": {
-        "color": "#000000",
-        "border-color": "#000000"
-      },
-      "quantityInput": {
-        "color": "#000000",
-        "border-color": "#000000"
-      }
-    }
-  }
-},
-      });
-    });
-  }
-})();
-/*]]>*/
-
-//twisty
-
-/*<![CDATA[*/
-(function () {
-  var scriptURL = 'https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js';
-  if (window.ShopifyBuy) {
-    if (window.ShopifyBuy.UI) {
-      ShopifyBuyInit();
-    } else {
-      loadScript();
-    }
-  } else {
-    loadScript();
-  }
-  function loadScript() {
-    var script = document.createElement('script');
-    script.async = true;
-    script.src = scriptURL;
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(script);
-    script.onload = ShopifyBuyInit;
-  }
-  function ShopifyBuyInit() {
-    var client = ShopifyBuy.buildClient({
-      domain: 'eyf6fx-fu.myshopify.com',
-      storefrontAccessToken: '3768e3aa0c990cd25c93de476895152e',
-    });
-    ShopifyBuy.UI.onReady(client).then(function (ui) {
-      ui.createComponent('product', {
-        id: '9862845989181',
-        node: document.getElementById('product-component-1756993522203'),
-        moneyFormat: '%24%7B%7Bamount%7D%7D',
-        options: {
-  "product": {
-    "styles": {
-      "product": {
-        "@media (min-width: 601px)": {
-          "max-width": "calc(25% - 20px)",
-          "margin-left": "20px",
-          "margin-bottom": "50px"
-        },
-        "carousel-button": {
-          "display": "none"
-        }
-      },
-      "title": {
-        "font-family": "Droid Serif, serif",
-        "color": "#ffffff"
-      },
-      "button": {
-        "font-family": "Droid Serif, serif",
-        "font-weight": "bold",
-        "font-size": "14px",
-        "padding-top": "15px",
-        "padding-bottom": "15px",
-        "color": "#000000",
-        ":hover": {
-          "color": "#000000",
-          "background-color": "#e6e6e6"
-        },
-        "background-color": "#ffffff",
-        ":focus": {
-          "background-color": "#e6e6e6"
-        },
-        "border-radius": "10px",
-        "padding-left": "64px",
-        "padding-right": "64px"
-      },
-      "quantityInput": {
-        "font-size": "14px",
-        "padding-top": "15px",
-        "padding-bottom": "15px"
-      },
-      "price": {
-        "color": "#ffffff"
-      },
-      "compareAt": {
-        "color": "#ffffff"
-      },
-      "unitPrice": {
-        "color": "#ffffff"
-      },
-      "description": {
-        "font-family": "PT Serif, serif",
-        "color": "#ffffff"
-      }
-    },
-    "buttonDestination": "modal",
-    "contents": {
-      "img": false,
-      "imgWithCarousel": true,
-      "options": false
-    },
-    "text": {
-      "button": "View product"
-    },
-    "googleFonts": [
-      "Droid Serif",
-      "PT Serif"
-    ]
-  },
-  "productSet": {
-    "styles": {
-      "products": {
-        "@media (min-width: 601px)": {
-          "margin-left": "-20px"
-        }
-      }
-    }
-  },
-  "modalProduct": {
-    "contents": {
-      "img": false,
-      "imgWithCarousel": true,
-      "button": false,
-      "buttonWithQuantity": true
-    },
-    "styles": {
-      "product": {
-        "@media (min-width: 601px)": {
-          "max-width": "100%",
-          "margin-left": "0px",
-          "margin-bottom": "0px"
-        }
-      },
-      "button": {
-        "font-family": "Droid Serif, serif",
-        "font-weight": "bold",
-        "font-size": "14px",
-        "padding-top": "15px",
-        "padding-bottom": "15px",
-        "color": "#000000",
-        ":hover": {
-          "color": "#000000",
-          "background-color": "#e6e6e6"
-        },
-        "background-color": "#ffffff",
-        ":focus": {
-          "background-color": "#e6e6e6"
-        },
-        "border-radius": "10px",
-        "padding-left": "64px",
-        "padding-right": "64px"
-      },
-      "quantityInput": {
-        "font-size": "14px",
-        "padding-top": "15px",
-        "padding-bottom": "15px"
-      },
-      "title": {
-        "font-family": "PT Serif, serif",
-        "font-weight": "bold",
-        "font-size": "26px",
-        "color": "#fdfdfd"
-      },
-      "price": {
-        "font-family": "PT Serif, serif",
-        "font-weight": "bold",
-        "font-size": "18px",
-        "color": "#ffffff"
-      },
-      "compareAt": {
-        "font-family": "PT Serif, serif",
-        "font-weight": "bold",
-        "font-size": "15.299999999999999px",
-        "color": "#ffffff"
-      },
-      "unitPrice": {
-        "font-family": "PT Serif, serif",
-        "font-weight": "bold",
-        "font-size": "15.299999999999999px",
-        "color": "#ffffff"
-      },
-      "description": {
-        "font-family": "PT Serif, serif",
-        "font-weight": "normal",
-        "font-size": "14px",
-        "color": "#ffffff"
-      }
-    },
-    "googleFonts": [
-      "PT Serif",
-      "Droid Serif"
-    ],
-    "text": {
-      "button": "Add to cart"
-    }
-  },
-  "modal": {
-    "styles": {
-      "modal": {
-        "background-color": "#000000"
-      }
-    }
-  },
-  "option": {},
-  "cart": {
-    "styles": {
-      "button": {
-        "font-family": "Droid Serif, serif",
-        "font-weight": "bold",
-        "font-size": "14px",
-        "padding-top": "15px",
-        "padding-bottom": "15px",
-        "color": "#000000",
-        ":hover": {
-          "color": "#000000",
-          "background-color": "#e6e6e6"
-        },
-        "background-color": "#ffffff",
-        ":focus": {
-          "background-color": "#e6e6e6"
-        },
-        "border-radius": "10px"
-      },
-      "title": {
-        "color": "#000000"
-      },
-      "header": {
-        "color": "#000000"
-      },
-      "lineItems": {
-        "color": "#000000"
-      },
-      "subtotalText": {
-        "color": "#000000"
-      },
-      "subtotal": {
-        "color": "#000000"
-      },
-      "notice": {
-        "color": "#000000"
-      },
-      "currency": {
-        "color": "#000000"
-      },
-      "close": {
-        "color": "#000000",
-        ":hover": {
-          "color": "#000000"
-        }
-      },
-      "empty": {
-        "color": "#000000"
-      },
-      "noteDescription": {
-        "color": "#000000"
-      },
-      "discountText": {
-        "color": "#000000"
-      },
-      "discountIcon": {
-        "fill": "#000000"
-      },
-      "discountAmount": {
-        "color": "#000000"
-      }
-    },
-    "text": {
-      "total": "Subtotal",
-      "button": "Let's Nourish That Hair!"
-    },
-    "googleFonts": [
-      "Droid Serif"
-    ]
-  },
-  "toggle": {
-    "styles": {
-      "toggle": {
-        "font-family": "Droid Serif, serif",
-        "font-weight": "bold",
-        "background-color": "#ffffff",
-        ":hover": {
-          "background-color": "#e6e6e6"
-        },
-        ":focus": {
-          "background-color": "#e6e6e6"
-        }
-      },
-      "count": {
-        "font-size": "14px",
-        "color": "#000000",
-        ":hover": {
-          "color": "#000000"
-        }
-      },
-      "iconPath": {
-        "fill": "#000000"
-      }
-    },
-    "googleFonts": [
-      "Droid Serif"
-    ]
-  },
-  "lineItem": {
-    "styles": {
-      "variantTitle": {
-        "color": "#000000"
-      },
-      "title": {
-        "color": "#000000"
-      },
-      "price": {
-        "color": "#000000"
-      },
-      "fullPrice": {
-        "color": "#000000"
-      },
-      "discount": {
-        "color": "#000000"
-      },
-      "discountIcon": {
-        "fill": "#000000"
-      },
-      "quantity": {
-        "color": "#000000"
-      },
-      "quantityIncrement": {
-        "color": "#000000",
-        "border-color": "#000000"
-      },
-      "quantityDecrement": {
-        "color": "#000000",
-        "border-color": "#000000"
-      },
-      "quantityInput": {
-        "color": "#000000",
-        "border-color": "#000000"
-      }
-    }
-  }
-},
-      });
-    });
-  }
-})();
-/*]]>*/
 
 //motion js animations 
  
