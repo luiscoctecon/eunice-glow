@@ -476,3 +476,46 @@ li {
   width: var(--day-label-size);
   height: var(--day-label-size);
 }
+
+
+
+#menuDesktop a {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: #ffffff;
+    text-decoration: none;
+}
+#menuDesktop {
+    position: fixed; display: flex; width: 100%; background-color: transparent; top: 0; backdrop-filter: blur(10px); z-index: 50; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); animation: fade-in 1s;
+align-items: center;;
+}
+.events-desktop a {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: normal;
+    font-size: 1rem;
+    color: #ffffff;
+    text-decoration: none;
+    ;
+    margin-left: 2rem;
+}
+@media (max-width: 500px) {
+    
+        #navigation { display: none;}
+    }
+
+
+#mobileMenu {
+    background: linear-gradient(135deg, #ffffff, #cebf96) !important;
+    height: fit-content;
+}
+#mobileMenuBtn {
+    color: white; z-index: 50;
+}
+
+@media (max-width: 507px) {
+    .menu-desktop  {
+        display: none;
+    }
+
+}
