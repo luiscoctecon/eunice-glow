@@ -195,7 +195,7 @@ quizForm.addEventListener('submit', async (e) => {
 
         if (response.ok) {
             alert('Thank you for completing the quiz! We will email you soon with your results.');
-            window.location.href = 'https://heraesntls.com/thankyouquiz';
+            window.location.href = 'https://euniceinsideglow.com/thankyouquiz';
         } else {
             alert('There was an error submitting your quiz. Please try again.');
         }
