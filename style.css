@@ -477,7 +477,7 @@ li {
   height: var(--day-label-size);
 }
 
-
+/*menu */
 
 #menuDesktop a {
     font-family: 'Montserrat', sans-serif;
@@ -488,7 +488,7 @@ li {
 }
 #menuDesktop {
     position: fixed; display: flex; width: 100%; background-color: transparent; top: 0; backdrop-filter: blur(10px); z-index: 50; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); animation: fade-in 1s;
-align-items: center;;
+align-items: center;
 }
 .events-desktop a {
     font-family: 'Montserrat', sans-serif;
@@ -499,7 +499,7 @@ align-items: center;;
     ;
     margin-left: 2rem;
 }
-@media (max-width: 500px) {
+@media (min-width: 500px) {
     
         #navigation { display: none;}
     }
@@ -513,8 +513,11 @@ align-items: center;;
     color: white; z-index: 50;
 }
 
-@media (max-width: 507px) {
+@media (min-width: 507px) {
     .menu-desktop  {
+        display: none;
+    }
+    .mobileMenuBtn {
         display: none;
     }
 

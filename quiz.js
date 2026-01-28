@@ -174,26 +174,28 @@ quizForm.addEventListener('submit', async (e) => {
         return;
     }
 
-    const formData = {
-        answers,
-        fullName: document.getElementById('fullName').value,
-        phone: document.getElementById('phone').value,
-        email: document.getElementById('email').value
-    };
+    const fullName = document.getElementById('fullName').value;
+    const phone = document.getElementById('phone').value;
+    const email = document.getElementById('email').value;
+
+    const formData = new FormData();
+    formData.append('access_key', '812ad935-9c03-4aba-817c-a5f9253d662a');
+    formData.append('subject', 'New Transformation Quiz Submission');
+    formData.append('fullName', fullName);
+    formData.append('phone', phone);
+    formData.append('email', email);
+    formData.append('answers', JSON.stringify(answers));
+    formData.append('bestTimeToContact', answers[6] || 'Not specified');
 
     try {
-        const response = await fetch('/submit-quiz', {
+        const response = await fetch('https://api.web3forms.com/submit', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(formData)
+            body: formData
         });
 
         if (response.ok) {
-            const result = await response.json();
-            // Redirect to results page or show success message
-            window.location.href = `/results?type=${result.type}`;
+            alert('Thank you for completing the quiz! We will email you soon with your results.');
+            window.location.href = 'https://heraesntls.com/thankyouquiz';
         } else {
             alert('There was an error submitting your quiz. Please try again.');
         }

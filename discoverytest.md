@@ -162,3 +162,30 @@ And along the way, you’ll find not only clarity—but also a community of wome
 👉 [Start your self-discovery journey here]
 With love, belief, and fire for you,
  Eunice
+
+
+<form action="https://api.web3forms.com/submit" method="POST">
+    <!-- Required Access Key -->
+    <input type="hidden" name="access_key" value="812ad935-9c03-4aba-817c-a5f9253d662a">
+    
+    <!-- Custom Email Subject -->
+    <input type="hidden" name="subject" value="New Quiz Submission">
+
+    <!-- Question 1 -->
+    <p>1. What is the capital of France?</p>
+    <input type="radio" name="Q1_Capital" value="Paris" required> Paris<br>
+    <input type="radio" name="Q1_Capital" value="London"> London<br>
+
+    <!-- Question 2 -->
+    <p>2. Which planet is known as the Red Planet?</p>
+    <select name="Q2_Planet" required>
+        <option value="">Select an answer</option>
+        <option value="Mars">Mars</option>
+        <option value="Jupiter">Jupiter</option>
+    </select>
+
+    <!-- Optional: Redirect to a "Thank You" or "Results" page -->
+    <input type="hidden" name="redirect" value="https://yourwebsite.com">
+
+    <button type="submit">Submit Quiz</button>
+</form>
